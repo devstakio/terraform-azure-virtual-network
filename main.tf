@@ -30,41 +30,22 @@ resource "azurerm_subnet" "application" {
   resource_group_name  = data.azurerm_resource_group.resource_group.name
   virtual_network_name = azurerm_virtual_network.virtual_network.name
   address_prefix       = local.application_address_prefix
+  service_endpoints    = ["Microsoft.Sql"]
+
 
   delegation {
-    name = "app-delegation"
+    name = "container-delegation"
 
     service_delegation {
       name    = "Microsoft.ContainerInstance/containerGroups"
       actions = [
-        "Microsoft.Network/virtualNetworks/subnets/action",
-        "Microsoft.Network/virtualNetworks/subnets/join/action",
-        "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action",
+        "Microsoft.Network/virtualNetworks/subnets/action"
       ]
     }
   }
 }
 
-resource "azurerm_subnet" "data" {
-  name                 = "data"
-  resource_group_name  = data.azurerm_resource_group.resource_group.name
-  virtual_network_name = azurerm_virtual_network.virtual_network.name
-  address_prefix       = local.data_address_prefix
-
-//  delegation {
-//    name = "data-delegation"
-//
-//    service_delegation {
-//      name    = "Microsoft.Sql/managedInstances"
-//      actions = [
-//        "Microsoft.Network/virtualNetworks/subnets/join/action",
-//        "Microsoft.Network/virtualNetworks/subnets/prepareNetworkPolicies/action",
-//        "Microsoft.Network/virtualNetworks/subnets/unprepareNetworkPolicies/action"
-//      ]
-//    }
-//  }
-}
-
+// Used to allow a container in the container group have a private IP address
 resource "azurerm_network_profile" "application" {
   name                = "application"
   location            = data.azurerm_resource_group.resource_group.location
