@@ -45,6 +45,14 @@ resource "azurerm_subnet" "application" {
   }
 }
 
+resource "azurerm_subnet" "kubernetes_cluster" {
+  name                 = "kubernetes"
+  resource_group_name  = data.azurerm_resource_group.resource_group.name
+  virtual_network_name = azurerm_virtual_network.virtual_network.name
+  address_prefix       = local.kubernetes_address_prefix
+  service_endpoints    = ["Microsoft.Sql"]
+}
+
 // Used to allow a container in the container group have a private IP address
 resource "azurerm_network_profile" "application" {
   name                = "application"
