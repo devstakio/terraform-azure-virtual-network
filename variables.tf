@@ -11,7 +11,7 @@ variable "address_space" {
 }
 
 variable "dns_servers" {
-  type = list
+  type    = list
   default = ["168.63.129.16"]
 
   description = "List of IP addresses of DNS servers"

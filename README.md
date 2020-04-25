@@ -1,4 +1,3 @@
-
 ## Providers
 
 | Name | Version |
@@ -18,7 +17,7 @@
 
 | Name | Description |
 |------|-------------|
-| app\_subnet\_id | n/a |
-| application\_network\_profile\_id | n/a |
+| kubernetes\_subnet\_id | n/a |
+| kubernetes\_subnet\_name | n/a |
+| network\_name | n/a |
 | public\_subnet\_id | n/a |
-
