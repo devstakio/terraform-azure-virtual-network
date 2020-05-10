@@ -1,3 +1,4 @@
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Providers
 
 | Name | Version |
@@ -21,3 +22,5 @@
 | kubernetes\_subnet\_name | n/a |
 | network\_name | n/a |
 | public\_subnet\_id | n/a |
+
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

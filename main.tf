@@ -22,13 +22,13 @@ resource "azurerm_subnet" "public" {
   name                 = "public"
   resource_group_name  = data.azurerm_resource_group.resource_group.name
   virtual_network_name = azurerm_virtual_network.virtual_network.name
-  address_prefix       = local.public_address_prefix
+  address_prefixes     = local.public_address_prefixes
 }
 
 resource "azurerm_subnet" "kubernetes_cluster" {
   name                 = "kubernetes"
   resource_group_name  = data.azurerm_resource_group.resource_group.name
   virtual_network_name = azurerm_virtual_network.virtual_network.name
-  address_prefix       = local.kubernetes_address_prefix
+  address_prefixes     = local.kubernetes_address_prefixes
   service_endpoints    = ["Microsoft.Sql"]
 }
